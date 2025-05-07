@@ -1,0 +1,19 @@
+{
+  "name": "indicadores-extensao",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/MilenaSf00/indicadores-extensao.git",
+  "author": "Milena Ferreira",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3"
+  }
+}
