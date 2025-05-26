@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model Projeto {
+  id_projeto            Int       @id 
+  titulo_projeto        String?
+  modalidade            String?
+  unidade_origem        String?
+  id_area               Int
+  id_coord              Int
+  data_inicio_projeto   DateTime? @db.Date
+  data_fim_projeto      DateTime? @db.Date
+  situacao              String?
+  ultima_alteracao_projeto DateTime @db.Date
+  palavras_chave        String?
+  resumo                String?
+  parceria              String?
+
+  area                  Area      @relation(fields: [id_area], references: [id_area])
+  coordenador           Coordenador @relation(fields: [id_coord], references: [id_coord])
+  participantesProjeto  ParticipanteProjeto[]
+}
+
+model Coordenador {
+  id_coord     Int      @id @default(autoincrement())
+  nome_coord   String?
+  email_coord  String?
+
+  projetos     Projeto[]
+}
+
+model Area {
+  id_area          Int      @id @default(autoincrement())
+  area_conhecimento String?
+  area_tematica    String?
+  linha_tematica   String?
+
+  projetos         Projeto[]
+}
+
+model ParticipanteProjeto {
+  id_participante_projeto Int     @id @default(autoincrement())
+  id_projeto              Int
+  tipo_participante       String?
+  nome_participante       String?
+  numero_total_participante Int?
+
+  projeto                 Projeto @relation(fields: [id_projeto], references: [id_projeto])
+}
+
+model Curso {
+  codigo_curso          String      @id 
+  campus                String?
+  nivel                 String?
+  turno                 String?
+  nome_curso            String?
+  modalidade            String?
+  tipo_curso            String?
+  numero_total_aluno    Int
+}
